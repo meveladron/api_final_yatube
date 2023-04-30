@@ -5,6 +5,9 @@ User = get_user_model()
 
 
 class Group(models.Model):
+    id = models.AutoField(
+        primary_key=True
+    )
     title = models.CharField(
         verbose_name='Название',
         help_text='Введите название группы',
@@ -30,6 +33,9 @@ class Group(models.Model):
 
 
 class Post(models.Model):
+    id = models.AutoField(
+        primary_key=True
+    )
     text = models.TextField(
         verbose_name='Описание',
         help_text='Введите текст публикации',
@@ -69,6 +75,9 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    id = models.AutoField(
+        primary_key=True
+    )
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -97,6 +106,9 @@ class Comment(models.Model):
 
 
 class Follow(models.Model):
+    id = models.AutoField(
+        primary_key=True
+    )
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -110,9 +122,9 @@ class Follow(models.Model):
     )
 
     class Meta:
-        verbose_name_plural = 'Подписки',
-        verbose_name = 'Подписка',
         constraints = [models.UniqueConstraint(
             fields=['user', 'following'],
             name='unique_follow'
         )]
+        verbose_name_plural = 'Подписки',
+        verbose_name = 'Подписку',
